@@ -1,0 +1,97 @@
+#!/bin/bash
+
+
+# The tag can be "master" or a full git check-in hash in lower case hex
+# like for example:
+#tag=dc184319be9a272ffa4528f5bb5d0902f1edbbbb
+tag=0.1
+url=https://raw.githubusercontent.com/lanceman2/quickbuild/$tag/quickbuild.make
+
+# If we wanted a particular file, so we checks it's sha512 sum.
+# Run:
+#
+#    sha512sum quickbuild.make
+#
+# to get this long hex number
+
+
+sha512sum=4bb12b01391d1c62cc7cebd0705ba2cd5409c8d4e275f4952a120\
+2e0b1d442c435b2b9403eeffecbcd85e625325f2337ef60ec176840aa7f0c7a\
+e5efc57f1b13
+
+
+function usage()
+{
+    cat <<EOF
+
+  Usage: $0
+
+  This bootstrap script downloads and compresses a make file
+  from the web via url:
+
+     $url
+
+  We call it bootstrap because you need this make file before
+  you can configure and make this package.
+
+EOF
+    exit 1
+}
+
+
+[ "$1" = "--help" ] && usage
+[ "$1" = "-h" ] && usage
+
+set -ex
+
+# Go to the directory there this script is.
+cd $(dirname ${BASH_SOURCE[0]})
+
+if [ -z "$*" ] && [ -e quickbuild.make ] ; then
+    set +x
+    cat <<EOF
+
+  The file quickbuild.make exists.
+  If you wish to regenerate it remove it first.
+  Or run
+
+      $0 -f
+
+EOF
+    exit 1
+fi
+
+
+set -e
+cat <<EOF > quickbuild.make.tmp
+# This is a generated file
+#
+#  You can get the uncompressed and better commented original version
+#  of this file from:
+#
+#      $url
+#
+
+EOF
+
+
+# get the quickbuild.make file from the web
+wget $url -O quickbuild.make.org 
+
+if [ -n "$sha512sum" ] ; then
+    set +x
+    # We wanted a particular file, so we checks it's sha512 sum.
+    echo "$sha512sum  quickbuild.make.org" | sha512sum -c
+    set -x
+else
+    set +x
+    echo "The sha512sum of the downloaded file, before compressing it:"
+    set -x
+    sha512sum quickbuild.make.org
+fi
+
+sed quickbuild.make.org -e 's/^\s*\#.*$//g' -e '/^$/d' >> quickbuild.make.tmp
+
+rm quickbuild.make.org
+mv quickbuild.make.tmp quickbuild.make
+

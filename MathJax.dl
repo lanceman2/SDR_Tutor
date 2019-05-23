@@ -1,0 +1,27 @@
+#!/bin/bash
+
+
+################### CONFIGURE ###############################
+TAG=2.7.5
+
+# if not set it will not use the sha512 sum and tell you it
+SHA512SUM=
+
+############################################################
+
+
+set -ex
+set -o pipefail
+
+source ./GetSrcTarFromGithub.bash
+
+#Usage: GetSrcTarFromGithub user package tag tarname [sha512]
+
+GetSrcTarFromGithub mathjax MathJax $TAG MathJax-$TAG $SHA512SUM
+
+# Math Jax is kind-of large now.
+
+
+mkdir -p MathJax
+tar -C MathJax -xvf MathJax-$TAG.tar.gz --strip-components=1
+rm MathJax-$TAG.tar.gz
