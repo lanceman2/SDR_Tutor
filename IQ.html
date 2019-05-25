@@ -2,19 +2,62 @@
 <html lang=en>
 <head>
     <meta charset="utf-8"/>
-     <link rel='stylesheet' href='main.css'></link>
-    <script src="MathJax/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+    <link rel='stylesheet' href='main.css'></link>
+    <script src="MathJax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "all"} } });
+    </script>
     <title>SDR IQ</title>
 </head>
 <body>
 
-    <h1>IQ</h1>
+    <h5><a href="index.html">table of contents</a></h5>
+
+    <h1>IQ </h1>
 
     <p>
-    When \(a \ne 0\), there are two solutions to
-    \(ax^2 + bx + c = 0\) and they are
-    $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+    At some point in a circuit in our SDR (software define radio) we say
+    there is a electric potential that varies continuously with time.
+    This point is somewhere between an AtoD (analog to digital) converter
+    and an antenna.  We'll call this electric potential the "wave signal".
+    If the power flow in this circuit at this point is toward the
+    antenna than we have a transmitter (tx), and if the power in this
+    circuit at this point is away from the antenna than we have a receiver
+    (rx).  We call this electric potential the wave signal.  Following
+    most engineering conventions we drop the model that this is an
+    electric potential, and consider it to be just a real number that varies
+    in time, without units.  We consider it to be the theoretical signal
+    wave form, signal for short.
     </p>
+
+    <p>
+    We define this continuous signal \(\Psi(t)\) with the form
+
+    $$\Psi(t) = A(t) \sin(2 \pi f t + \phi(t)) \label{Psi}$$
+
+    where \(A(t)\) is the amplitude as a function of time, \(t\),
+    \(f\) we call the carrier frequency 
+    </p>
+
+    <p>
+    See \ref{Psi}
+    </p>
+
+    </p>
+
+
+
+    <h3>External References</h3>
+
+    <ul>
+        <li>YouTube video lecture: <a href="https://www.youtube.com/watch?v=h_7d-m1ehoY">Basics
+                of IQ Signals and IQ modulation & demodulation - A
+                tutorial</a>
+        </li>
+    </ul>
+
+        
+    <h5><a href="index.html">table of contents</a></h5>
 
 </body>
 </html>
