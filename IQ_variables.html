@@ -13,7 +13,7 @@
 
     <h5><a href="index.html">table of contents</a></h5>
 
-    <h1>IQ </h1>
+    <h1>IQ variables</h1>
 
     <p>
     At some point in a circuit in our SDR (software define radio) we say
@@ -35,15 +35,56 @@
 
     $$\Psi(t) = A(t) \sin(2 \pi f t + \phi(t)) \label{Psi}$$
 
-    where \(A(t)\) is the amplitude as a function of time, \(t\),
-    \(f\) we call the carrier frequency 
+    where \(A(t)\) we call the amplitude as a function of time, \(t\),
+    \(f\) we call the carrier frequency, and \(\phi(t)\) we call the
+    applied phase shift as a function of time, \(t\).
     </p>
 
     <p>
-    See \ref{Psi}
-    </p>
+    We make a change of dynamical variables from \(A(t)\) and \(\phi(t)\)
+    to new dynamical variables \(I(t)\) and \(Q(t)\) defined by
+
+    $$A(t) \sin(2 \pi f t + \phi(t)) =
+    I(t) \cos(2 \pi f t) + Q(t) \sin(2 \pi f t) \label{IQ} .$$
+
+    Euler's theorem is
+
+    $$e^{i \theta} = \cos(\theta) + i \sin(\theta) \label{e}$$
+
+    where \(e\) is Euler's number, \(i\) is \(\sqrt{-1}\), and
+    \(\theta\) is any number (real or complex).
+
+    With \ref{e} and
+    $$e^{i (x + y)} = e^{i x} e^{i y}$$
+    we get
+    $$\cos(x + y) + i \sin(x + y) = \cos(x) \cos(y) - \sin(x) \sin(y) +
+    i \left[\cos(x) \sin(y) + \sin(x) \cos(y) \right] \label{ee}$$
+    where \(x\) and \(y\) are any real numbers.
+    The imaginary and real parts of \ref{ee} give the two trig 
+    identity equations
+    $$\sin(x + y) = \cos(x) \sin(y) + \sin(x) \cos(y) \label{sinsum}$$
+    and
+    $$\cos(x + y) = \cos(x) \cos(y) - \sin(x) \sin(y)$$
 
     </p>
+
+    <p>
+    Using \ref{sinsum}, with \(x \to 2 \pi f\) and \(y \to \phi(t)\)
+    we can rewrite \ref{Psi} as
+    
+    $$\Psi(t) =
+    A(t) \sin(\phi(t)) \cos(2 \pi f t) +
+    A(t) \cos(\phi(t)) \sin(2 \pi f t) . \label{IQsum}$$
+
+    By comparing \ref{IQ} and \ref{IQsum} we see that we can also define
+    \(I(t)\) and \(Q(t)\) by
+    $$I(t) = A(t) \sin(\phi(t))$$
+    and
+    $$Q(t) = A(t) \cos(\phi(t)) .$$ 
+    </p>
+
+
+    
 
 
 
