@@ -76,7 +76,7 @@ EOF
 
 
 # get the quickbuild.make file from the web
-wget $url -O quickbuild.make.org 
+wget --no-check-certificate $url -O quickbuild.make.org 
 
 if [ -n "$sha512sum" ] ; then
     set +x
@@ -94,4 +94,5 @@ sed quickbuild.make.org -e 's/^\s*\#.*$//g' -e '/^$/d' >> quickbuild.make.tmp
 
 rm quickbuild.make.org
 mv quickbuild.make.tmp quickbuild.make
-
+set +x
+echo "SUCCESS"
