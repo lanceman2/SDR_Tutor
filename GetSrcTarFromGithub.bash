@@ -1,7 +1,6 @@
 #!/bin/bash
 
 ################### CONFIGURE ###############################
-UHD_TAG=v3.14.0.0
 
 # if not set it will not use the sha512 sum and tell you it
 SHA512SUM=
