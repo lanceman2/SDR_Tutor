@@ -15,6 +15,7 @@
 
     <h1>IQ variables</h1>
 
+
     <p>
     At some point in a circuit in our SDR (software define radio) we say
     there is a electric potential that varies continuously with time.
@@ -45,7 +46,10 @@
     to new dynamical variables \(I(t)\) and \(Q(t)\) defined by
 
     $$A(t) \sin(2 \pi f t + \phi(t)) =
+    \Psi(t) \equiv
     I(t) \cos(2 \pi f t) + Q(t) \sin(2 \pi f t) \label{IQ} .$$
+
+    It's important to note this is a time dependent change of variables.
 
     Euler's theorem is
 
@@ -80,12 +84,28 @@
     \(I(t)\) and \(Q(t)\) by
     $$I(t) = A(t) \sin(\phi(t))$$
     and
-    $$Q(t) = A(t) \cos(\phi(t)) .$$ 
+    $$Q(t) = A(t) \cos(\phi(t)) . \label{IQsumCP}$$ 
     </p>
 
+    <p>
+    We can define carrier phase \(\theta(t)\) by
 
-    
+    $$\theta(t) \equiv 2 \pi f t . $$
 
+    Now we see that \(I\) and \(Q\) are independent of carrier phase,
+    \(\theta\).  And now my head explodes; by using \(I\) and \(Q\) as
+    our dynamical variables we do not concern our selves with the
+    signal "carrier".  To get our original signal \(\Psi(t)\) back
+    from, this magical change of variables, \(I(t)\) and \(Q(t)\)
+    we need the carrier frequency.
+    </p>
+
+    <p>
+    Note: if we are not given the carrier frequency, \(f\), and are just
+    given \(I(t)\) and \(Q(t)\) as a function of \(t\) we can say we still
+    have the signal, but with no signal carrier.  It's like removing the
+    carrier from the signal.  I find that mind blowing.
+    </p>
 
 
     <h3>External References</h3>
@@ -94,6 +114,9 @@
         <li>YouTube video lecture: <a href="https://www.youtube.com/watch?v=h_7d-m1ehoY">Basics
                 of IQ Signals and IQ modulation & demodulation - A
                 tutorial</a>
+        </li>
+        <li>Science Direct: <a
+            href="https://www.sciencedirect.com/topics/engineering/carrier-phase">carrier-phase</a>
         </li>
     </ul>
 
