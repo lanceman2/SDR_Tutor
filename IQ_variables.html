@@ -34,23 +34,37 @@
     <p>
     We define this continuous signal \(\Psi(t)\) with the form
 
-    $$\Psi(t) = A(t) \sin(2 \pi f t + \phi(t)) \label{Psi}$$
+    $$\Psi(t) = A(t) \cos(2 \pi f t - \phi(t)) \label{Psi}$$
 
     where \(A(t)\) we call the amplitude as a function of time, \(t\),
     \(f\) we call the carrier frequency, and \(\phi(t)\) we call the
-    applied phase shift as a function of time, \(t\).
+    applied phase shift as a function of time, \(t\).  The choose of
+    the relative phase of the signal seems arbitrary.  We could have
+    picked, that with \(\phi(0)\), we have a sine wave, a cosine wave,
+    or in general a sinusoidal that is a phase shifted by any constant.
+    It would seem that convention dictates that "the signal", \(\Psi(t)\)
+    at \(\phi(0)\) is a cosine function, equation \ref{Psi}.
+    Convention also seems to show that the wave, as plotted as a function
+    of \(t\) is shifted along the positive \(t\) direction as \(\phi(t)\)
+    increases, as in equation \ref{Psi}.
     </p>
 
     <p>
     We make a change of dynamical variables from \(A(t)\) and \(\phi(t)\)
     to new dynamical variables \(I(t)\) and \(Q(t)\) defined by
 
-    $$A(t) \sin(2 \pi f t + \phi(t)) =
-    \Psi(t) \equiv
+    $$\Psi(t) =
     I(t) \cos(2 \pi f t) + Q(t) \sin(2 \pi f t) \label{IQ} .$$
 
     It's important to note this is a time dependent change of variables.
+    Convention says that \(I\) is called the "in phase" part of the
+    signal, and \(Q\) is the "out of phase" part of the signal.  That
+    makes sense given that with \(Q\) and \(\phi\) both set to \(0\), and
+    \(I\) held constant the signal is \(I \cos(2 \pi f t)\) where \(I\) is
+    \(A\).
+    </p>
 
+    <p>
     Euler's theorem is
 
     $$e^{i \theta} = \cos(\theta) + i \sin(\theta) \label{e}$$
@@ -68,23 +82,23 @@
     identity equations
     $$\sin(x + y) = \cos(x) \sin(y) + \sin(x) \cos(y) \label{sinsum}$$
     and
-    $$\cos(x + y) = \cos(x) \cos(y) - \sin(x) \sin(y)$$
+    $$\cos(x + y) = \cos(x) \cos(y) - \sin(x) \sin(y) .\label{cossum}$$
 
     </p>
 
     <p>
-    Using \ref{sinsum}, with \(x \to 2 \pi f\) and \(y \to \phi(t)\)
+    Using \ref{cossum}, with \(x \to 2 \pi f t\) and \(y \to - \phi(t)\)
     we can rewrite \ref{Psi} as
-    
+
     $$\Psi(t) =
-    A(t) \sin(\phi(t)) \cos(2 \pi f t) +
-    A(t) \cos(\phi(t)) \sin(2 \pi f t) . \label{IQsum}$$
+    A(t) \cos(\phi(t)) \cos(2 \pi f t) +
+    A(t) \sin(\phi(t)) \sin(2 \pi f t) . \label{IQsum}$$
 
     By comparing \ref{IQ} and \ref{IQsum} we see that we can also define
     \(I(t)\) and \(Q(t)\) by
-    $$I(t) = A(t) \sin(\phi(t)) \label{IQ_I} $$
+    $$I(t) = A(t) \cos(\phi(t)) \label{IQ_I} $$
     and
-    $$Q(t) = A(t) \cos(\phi(t)) . \label{IQ_Q}$$ 
+    $$Q(t) = A(t) \sin(\phi(t)) . \label{IQ_Q}$$ 
     </p>
 
     <p>
@@ -93,7 +107,7 @@
     $$\theta(t) \equiv 2 \pi f t . $$
 
     Now we see that \(I\) and \(Q\) are independent of carrier phase,
-    \(\theta\).  And now my head explodes; by using \(I\) and \(Q\) as
+    \(\theta\).  By using \(I\) and \(Q\) as
     our dynamical variables we do not concern our selves with the
     signal "carrier".  To get our original signal \(\Psi(t)\) back
     from, this magical change of variables, \(I(t)\) and \(Q(t)\)
@@ -104,33 +118,37 @@
     Note: if we are not given the carrier frequency, \(f\), and are just
     given \(I(t)\) and \(Q(t)\) as a function of \(t\) we can say we still
     have the signal, but with no signal carrier.  It's like removing the
-    carrier from the signal.  I find that mind blowing.
+    carrier from the signal.
     </p>
 
     <p>
-    Summing the squares of equations \ref{IQ_I} and \ref{IQ_Q}, and given
+    Summing the squares of equations \ref{IQ_Q} and \ref{IQ_I}, and given
     the Pythagorean trigonometric identity
 
-    $$1 = \sin^{2}(x) + \cos^{2}(x)$$
+    $$1 = \cos^{2}(x) + \sin^{2}(x)$$
 
     we can show that
 
     $$A^{2}(t) = I^{2}(t) + Q^{2}(t) .$$
 
-    Dividing equations \ref{IQ_I} and \ref{IQ_Q}, and given the
+    Dividing equations \ref{IQ_Q} and \ref{IQ_I}, and given the
     trigonometric relation
 
     $$\tan(x) = \frac{\sin(x)}{\cos(x)}$$
 
     we can show that
 
-    $$\tan(\phi(t)) = \frac{I(t)}{Q(t)} .$$
+    $$\tan(\phi(t)) = \frac{Q(t)}{I(t)} .$$
 
 
     <h3>External References</h3>
 
     <ul>
-        <li>YouTube video lecture: <a href="https://www.youtube.com/watch?v=h_7d-m1ehoY">Basics
+        <li><a href="https://pysdr.org/content/sampling.html">A Guide to
+                SDR and DSP using Python</a>
+        </li>
+        <li>YouTube video lecture: <a
+                href="https://www.youtube.com/watch?v=h_7d-m1ehoY">Basics
                 of IQ Signals and IQ modulation & demodulation - A
                 tutorial</a>
         </li>
