@@ -82,9 +82,9 @@
 
     By comparing \ref{IQ} and \ref{IQsum} we see that we can also define
     \(I(t)\) and \(Q(t)\) by
-    $$I(t) = A(t) \sin(\phi(t))$$
+    $$I(t) = A(t) \sin(\phi(t)) \label{IQ_I} $$
     and
-    $$Q(t) = A(t) \cos(\phi(t)) . \label{IQsumCP}$$ 
+    $$Q(t) = A(t) \cos(\phi(t)) . \label{IQ_Q}$$ 
     </p>
 
     <p>
@@ -106,6 +106,25 @@
     have the signal, but with no signal carrier.  It's like removing the
     carrier from the signal.  I find that mind blowing.
     </p>
+
+    <p>
+    Summing the squares of equations \ref{IQ_I} and \ref{IQ_Q}, and given
+    the Pythagorean trigonometric identity
+
+    $$1 = \sin^{2}(x) + \cos^{2}(x)$$
+
+    we can show that
+
+    $$A^{2}(t) = I^{2}(t) + Q^{2}(t) .$$
+
+    Dividing equations \ref{IQ_I} and \ref{IQ_Q}, and given the
+    trigonometric relation
+
+    $$\tan(x) = \frac{\sin(x)}{\cos(x)}$$
+
+    we can show that
+
+    $$\tan(\phi(t)) = \frac{I(t)}{Q(t)} .$$
 
 
     <h3>External References</h3>
