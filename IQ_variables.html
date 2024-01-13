@@ -19,41 +19,58 @@
     <p>
     At some point in a circuit in our SDR (software define radio) we say
     there is a electric potential that varies continuously with time.
-    This point is somewhere between an AtoD (analog to digital) converter
-    and an antenna.  We'll call this electric potential the "wave signal".
-    If the power flow in this circuit at this point is toward the
-    antenna than we have a transmitter (tx), and if the power in this
-    circuit at this point is away from the antenna than we have a receiver
-    (rx).  We call this electric potential the wave signal.  Following
-    most engineering conventions we drop the model that this is an
-    electric potential, and consider it to be just a real number that varies
-    in time, without units.  We consider it to be the theoretical signal
-    wave form, signal for short.
+    This point is somewhere between an AtoD (analog to digital) (DtoA for
+    tx) converter and an antenna.  We'll call this electric potential the
+    "wave signal".  If the power flow in this circuit at this point is
+    toward the antenna than we have a transmitter (tx), and if the power
+    in this circuit at this point is away from the antenna than we have a
+    receiver (rx).  We call this electric potential the wave signal.
+    Following most engineering conventions we drop the model that this is
+    an electric potential, and consider it to be just a real number that
+    varies in time, without units.  We consider it to be the theoretical
+    signal wave form, signal for short.
     </p>
 
     <p>
-    We define this continuous signal \(\Psi(t)\) with the form
+    We define this continuous signal \(x(t)\) with the form
 
-    $$\Psi(t) = A(t) \cos(2 \pi f t - \phi(t)) \label{Psi}$$
+    $$x(t) = A(t) \cos(2 \pi f t - \phi(t)) \label{x}$$
 
     where \(A(t)\) we call the amplitude as a function of time, \(t\),
     \(f\) we call the carrier frequency, and \(\phi(t)\) we call the
     applied phase shift as a function of time, \(t\).  The choose of
     the relative phase of the signal seems arbitrary.  We could have
     picked, that with \(\phi(0)\), we have a sine wave, a cosine wave,
-    or in general a sinusoidal that is a phase shifted by any constant.
-    It would seem that convention dictates that "the signal", \(\Psi(t)\)
-    at \(\phi(0)\) is a cosine function, equation \ref{Psi}.
-    Convention also seems to show that the wave, as plotted as a function
-    of \(t\) is shifted along the positive \(t\) direction as \(\phi(t)\)
-    increases, as in equation \ref{Psi}.
+    or in general a sinusoidal that is phase shifted by any constant.
+    It would seem that convention dictates that the signal, \(x(t)\), with
+    \(\phi(t) \to 0\) is a cosine function, equation \ref{x}.  Convention
+    also seems to show that the wave, as plotted as a function of \(t\) is
+    shifted along the positive \(t\) direction as \(\phi(t)\) increases,
+    as in equation \ref{x}.   If you do not follow these conventions for
+    the form of the signal you'll get different results for what follows,
+    equations \ref{IQ_I}, \ref{IQ_Q} and \ref{tanIQ}.  i.e. I had the
+    "wrong" form, \(\sin\) and not \(\cos\), \(\phi\) and not \(-\phi\),
+    and got different results than equations \ref{IQ_I}, \ref{IQ_Q}, and
+    \ref{tanIQ}.  It's important to note that the form of this function
+    in a sense defines what a "carrier wave" is, the \(A(t)\) and
+    \(\phi(t)\) are unspecified so \(x(t)\) can be any function of time,
+    \(t\), not just something close to a sine wave.  In most applications
+    it is close to a simple sine wave.  Later we will combine many signal
+    waves each with a different carrier frequency.  For now we start with
+    just one "signal", by definition, if you will.  From there will derive
+    an ODE (ordinary differential equation) and generalize this ODE; to
+    add ideas like noise to the signal, for example.  Giving this
+    kinematic form, \ref{x}, for the model of a wave signal limits what we
+    can do.  This ODE model could be thought of as a reduction of
+    Maxwell's equations, but we, in a sense, will just imperially derive
+    these ODEs.
     </p>
 
     <p>
     We make a change of dynamical variables from \(A(t)\) and \(\phi(t)\)
     to new dynamical variables \(I(t)\) and \(Q(t)\) defined by
 
-    $$\Psi(t) =
+    $$x(t) =
     I(t) \cos(2 \pi f t) + Q(t) \sin(2 \pi f t) \label{IQ} .$$
 
     It's important to note this is a time dependent change of variables.
@@ -83,14 +100,13 @@
     $$\sin(x + y) = \cos(x) \sin(y) + \sin(x) \cos(y) \label{sinsum}$$
     and
     $$\cos(x + y) = \cos(x) \cos(y) - \sin(x) \sin(y) .\label{cossum}$$
-
     </p>
 
     <p>
-    Using \ref{cossum}, with \(x \to 2 \pi f t\) and \(y \to - \phi(t)\)
-    we can rewrite \ref{Psi} as
+    Using \ref{cossum}, with \(x \to - \phi(t)\) and \(y \to 2 \pi f t\)
+    we can rewrite \ref{x} as
 
-    $$\Psi(t) =
+    $$x(t) =
     A(t) \cos(\phi(t)) \cos(2 \pi f t) +
     A(t) \sin(\phi(t)) \sin(2 \pi f t) . \label{IQsum}$$
 
@@ -109,7 +125,7 @@
     Now we see that \(I\) and \(Q\) are independent of the carrier phase,
     \(\theta\).  By using \(I\) and \(Q\) as
     our dynamical variables we do not concern our selves with the
-    signal "carrier".  To get our original signal \(\Psi(t)\) back
+    signal "carrier".  To get our original signal \(x(t)\) back
     from, this magical change of variables, \(I(t)\) and \(Q(t)\)
     we need the carrier frequency.
     </p>
@@ -138,7 +154,7 @@
 
     we can show that
 
-    $$\tan(\phi(t)) = \frac{Q(t)}{I(t)} .$$
+    $$\tan(\phi(t)) = \frac{Q(t)}{I(t)} \label{tanIQ}.$$
 
 
     <h2>(next) IQ Using Complex Variables</h2>
