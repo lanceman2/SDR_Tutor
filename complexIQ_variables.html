@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8"/>
+    <link rel='stylesheet' href='main.css'></link>
+    <script src="MathJax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "all"} } });
+    </script>
+    <title>SDR Complex IQ</title>
+</head>
+<body>
+
+    <h5><a href="index.html">table of contents</a></h5>
+
+
+    <h2>Complex IQ Variables</h2>
+
+
+    <p>
+    We define the complex signal \(s(t)\) as
+
+    $$ s(t) =  A(t) e^{i \left(2 \pi f t + \phi(t)\right)} \label{s}$$
+
+    where \(i = \sqrt{-1}\), \(A(t)\) we call the amplitude as a function
+    of time, \(t\), the constant \(f\) we call the carrier frequency, and
+    \(\phi(t)\) we call the applied phase shift as a function of
+    \(t\); and \(A(t)\), \(f\), \(t\), and \(\phi(t)\) are all real
+    numbers.  We get <a
+        href=IQ_variables.html#mjx-eqn-x>\(x(t)\)</a>, the "real" signal,
+    by taking the real part of \(s(t)\), \(x(t) = \Re\left[s(t)\right]\).
+    The choose of the minus sign in the exponent is somewhat arbitrary
+    we could have picked
+    \(s(t) =  A(t) e^{- i \left(2 \pi f t + \phi(t)\right)}\), but it
+    turns out that convention dictates we use equation \ref{s}.
+
+    We can complete this complex signal model by saying
+
+    $$ s(t) = x(t) + i y(t) \label{s_xy}$$
+
+    where
+
+    $$ y(t) = A(t) \sin(2 \pi f t + \phi(t)) \label{y} . $$
+
+    Note, we are just defining \(y(t)\) for convenience.
+    </p>
+
+    <p>
+    Now lets remove the carrier wave from this complex signal, \ref{s_xy},
+    like we did before in chapter <a
+        href="IQ_variables.html">IQ_variables</a> with just the real
+    signal.
+    We define the change of variables \(s(t) \to S(t)\) with
+
+    $$s(t) = S(t) e^{i 2 \pi f t} \label{S_s}$$
+
+    or conversely \(S(t) \to s(t)\), by multiplying \ref{S_s} by
+    \(e^{ - i 2 \pi f t}\) we can get
+
+    $$S(t) = s(t) e^{ - i 2 \pi f t}$$
+
+    and that with \ref{s} gives
+
+    $$S(t) = A(t) e^{i \phi(t)} \label{S} . $$
+
+    Equation \ref{S} shows that complex signal, \(S(t)\), is independent of
+    the carrier signal frequency, \(f\).  And so, we can think of \(S(t)\) as
+    the complex signal with the carrier removed.
+    </p>
+
+    
+
+
+
+    <h5><a href="index.html">table of contents</a></h5>
+
+</body>
+</html>
